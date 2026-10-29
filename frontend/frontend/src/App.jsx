@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import StatusMessage from "./StatusMessage";
 import "./App.css";
 
-const API_URL = `${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/foods`;
+const API_URL =   import.meta.env.VITE_API_URL || "http://localhost:5001/api/foods";
 
 const EMPTY_FORM = {
   foodId: "",
