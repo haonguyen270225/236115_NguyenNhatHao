@@ -1,6 +1,114 @@
 # 236115_NguyenNhatHao
 Bai Thi Thuc Hanh . Môn Điện Toán Đám Mây.
 
+## Docker Deployment
+
+### 1. Requirements
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- MongoDB Atlas hoặc MongoDB server đã cấu hình.
+- File `backend/.env` chứa các biến môi trường cần thiết để kết nối cơ sở dữ liệu.
+
+### 2. Run Backend with Docker
+
+Backend sử dụng image `haonguyennhat/food-management-backend:1.0`.
+
+Từ thư mục gốc của dự án, chạy:
+
+```powershell
+docker pull haonguyennhat/food-management-backend:1.0
+
+docker run -d `
+  --name food-management-api `
+  -p 5001:5000 `
+  --env-file backend/.env `
+  haonguyennhat/food-management-backend:1.0
+```
+
+Kiểm tra trạng thái container:
+
+```powershell
+docker ps
+```
+
+Kiểm tra backend:
+
+```powershell
+Invoke-RestMethod http://localhost:5001/health
+Invoke-RestMethod http://localhost:5001/api/foods
+```
+
+API base URL:
+
+```text
+http://localhost:5001/api/foods
+```
+
+Xem log backend:
+
+```powershell
+docker logs food-management-api
+```
+
+### 3. Run Frontend with Docker
+
+Frontend sử dụng image `haonguyennhat/food-management-frontend:1.0`.
+
+Tải image:
+
+```powershell
+docker pull haonguyennhat/food-management-frontend:1.0
+```
+
+Chạy frontend:
+
+```powershell
+docker run -d `
+  --name food-management-web `
+  -p 8080:80 `
+  haonguyennhat/food-management-frontend:1.0
+```
+
+Mở giao diện tại:
+
+```text
+http://localhost:8080
+```
+
+Frontend được cấu hình sử dụng backend API tại:
+
+```text
+http://localhost:5001/api/foods
+```
+
+Đảm bảo backend đang chạy và cổng `5001` có thể truy cập từ trình duyệt. Nếu triển khai trên máy chủ khác, cần cấu hình lại `VITE_API_URL` khi build frontend để trỏ đến địa chỉ backend có thể truy cập được.
+
+### 4. Stop and Remove Containers
+
+Dừng container:
+
+```powershell
+docker stop food-management-web food-management-api
+```
+
+Xóa container:
+
+```powershell
+docker rm food-management-web food-management-api
+```
+
+Kiểm tra container:
+
+```powershell
+docker ps -a
+```
+
+### 5. Docker Hub Images
+
+- Backend: https://hub.docker.com/r/haonguyennhat/food-management-backend
+- Frontend: https://hub.docker.com/r/haonguyennhat/food-management-frontend
+
+
 # Cloud Food Management
 
 Hệ thống quản lý món ăn trên nền tảng điện toán đám mây, được xây dựng bằng React, Node.js, Express và MongoDB Atlas.
