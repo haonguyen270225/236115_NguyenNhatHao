@@ -1,0 +1,69 @@
+
+.form-dialog {
+  max-width: 720px;
+}
+
+.form-dialog .form-control {
+  border-color: #dce4f0;
+  border-radius: 9px;
+}
+
+.form-dialog .form-control:focus {
+  border-color: #86aefb;
+  box-shadow: 0 0 0 0.2rem rgb(13 110 253 / 12%);
+}
+
+.form-dialog .form-label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-dialog textarea {
+  resize: vertical;
+}
+
+.form-dialog .form-text {
+  font-size: 12px;
+}
+
+.detail-dialog .alert {
+  overflow-wrap: anywhere;
+}
+
+.food-image {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.food-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 210px;
+  background: #f3f6fa;
+  color: #64748b;
+}
+
+.food-image-placeholder span {
+  font-size: 48px;
+}
+
+.food-description {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.form-dialog,
+.detail-dialog {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
